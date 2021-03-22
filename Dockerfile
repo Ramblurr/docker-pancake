@@ -74,11 +74,13 @@ RUN a2enmod headers rewrite remoteip ;\
     a2enconf remoteip
 
 VOLUME /var/www/html
+VOLUME /var/www/html/uploads
 
 COPY pancake.zip /tmp
 RUN set -ex; \
     unzip -d /usr/src/ /tmp/pancake.zip; \
     ls /usr/src/pancake_4 ; \
+    chown -R nobody:nogroup /usr/src/pancake_4 ; \
     rm /tmp/pancake.zip; \
     rm -rf /tmp/pancake_4/;
 
